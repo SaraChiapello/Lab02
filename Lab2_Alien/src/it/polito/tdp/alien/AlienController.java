@@ -16,7 +16,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class AlienController {
-	
+	String parolaInserita;
+	AlienDictionary dizionario= new AlienDictionary();
     @FXML
     private ResourceBundle resources;
     @FXML
@@ -43,13 +44,50 @@ public class AlienController {
     
     @FXML
     void doTranslate(ActionEvent event) {
+//    	txtResult.clear();
+    	parolaInserita=txtWord.getText();
+    	String alienWord="";
+    	String traslation="";
+    	if(parolaInserita.length()==0) {
+    		txtResult.setText("Errore:parola vuota");
+    		return;
+    	}
+    	parolaInserita=parolaInserita.toLowerCase();
+    	//dovrei ancora controllare che ci siano solo caratteri
+
+    	
+//    	if(parolaInserita.contains(" ")) {
+//    		alienWord=parolaInserita.spl;
+//    		dizionario.addWord(alienWord, traslation);
+//    	}
+		String[] ar = parolaInserita.split(" ");
+		if(ar.length==1) {
+		 	if(!ar[0].matches("[a-z]+")) { //è fatto solo da lettere maiuscole anche ripetute?
+	    		txtResult.setText("Errore: caratteri non ammessi");
+	    		return;
+	    	}
+	    	
+	 		txtResult.appendText(dizionario.traslateWord(ar[0])+"\n");
+		} else if(ar.length==2) {
+		 	if(!ar[0].matches("[a-z]+")||!ar[1].matches("[a-z]+")) { //è fatto solo da lettere maiuscole anche ripetute?
+	    		txtResult.setText("Errore: caratteri non ammessi");
+	    		return;
+		 	}
+			dizionario.addWord(ar[0], ar[1]);
+
+		 	
+		}else {
+    		txtResult.setText("Errore: troppe parole");
+
+		}
+		txtWord.clear();
     	    	
     }
     
     
     @FXML
     void doReset(ActionEvent event) {
-
+    	txtResult.clear();
     }
     
 }
