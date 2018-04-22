@@ -3,27 +3,28 @@ package it.polito.tdp.alien;
 import java.util.*;
 
 public class AlienDictionary {
-	private List<Word> parole;
+	private List<WordEnhanced> parole;
 	
 
 	public AlienDictionary() {
-	 parole = new ArrayList<Word>();
+	 parole = new ArrayList<WordEnhanced>();
 	}
 
-	public List<Word> getParole() {
+	public List<WordEnhanced> getParole() {
 		return parole;
 	}
 
-	public void setParole(List<Word> parole) {
+	public void setParole(List<WordEnhanced> parole) {
 		this.parole = parole;
 	}
 	
 	public void addWord(String alienWord,String traslation) {
-		Word parolaInserita=new Word(alienWord,traslation);
-		for(Word w:parole) {
+		WordEnhanced parolaInserita=new WordEnhanced(alienWord,traslation);
+		for(WordEnhanced w:parole) {
 			if(w.equals(parolaInserita)) {
-				parole.remove(w);
-				parole.add(parolaInserita);
+				w.setTranslation(w.getTranslation()+" "+traslation);
+//				parole.remove(w);
+//				parole.add(w);
 				return;
 			}
 		}
@@ -32,7 +33,7 @@ public class AlienDictionary {
 	}
 	public String traslateWord(String alienWord) {
 		
-		for(Word w:parole) {
+		for(WordEnhanced w:parole) {
 			if(w.getAlienWord().equals(alienWord)) {
 				return w.toString();
 			}

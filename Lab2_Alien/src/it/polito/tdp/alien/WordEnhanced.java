@@ -1,6 +1,6 @@
 package it.polito.tdp.alien;
 
-public class Word {
+public class WordEnhanced {
 	private String alienWord;
 	private String translation;
 	
@@ -35,7 +35,7 @@ public class Word {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Word other = (Word) obj;
+		WordEnhanced other = (WordEnhanced) obj;
 		if (alienWord == null) {
 			if (other.alienWord != null)
 				return false;
@@ -43,7 +43,7 @@ public class Word {
 			return false;
 		return true;
 	}
-	public Word(String alienWord, String translation) {
+	public WordEnhanced(String alienWord, String translation) {
 		super();
 		this.alienWord = alienWord;
 		this.translation = translation;
